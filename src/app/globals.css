@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .logo {
   font-family: 'Dancing Script', cursive;
   color: #347866;
@@ -19,7 +23,6 @@ body {
 }
 
 main {
-  max-width: 900px;
   margin: 40px auto;
   background: #fff;
   border-radius: 18px;
@@ -44,7 +47,6 @@ input[type='text'], input, button {
   padding: 12px 18px;
   border-radius: 10px;
   border: 1.5px solid #b5c9d6;
-  margin-right: 14px;
   outline: none;
   transition: border 0.2s, box-shadow 0.2s;
   background: #f7fafc;
