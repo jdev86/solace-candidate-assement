@@ -12,7 +12,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - **Specialties Section**: Specialties are shown as pills. If there are many, the section is collapsible—showing 4 by default, with a "+N more" pill and a "Close" button to expand/collapse.
 - **Pagination**: Paginated advocate list.
 - **Accessibility**: Buttons and controls are accessible and keyboard-friendly.
-- **Tailwind CSS**: All styling is handled via Tailwind utility classes for maintainability and rapid development.
+- **Tailwind CSS**: Most styling is handled via Tailwind utility classes for maintainability and rapid development.
 
 ---
 
