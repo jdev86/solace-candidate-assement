@@ -1,5 +1,5 @@
 .logo {
-  font-family: 'Dancing Script', 'Inter', Arial, sans-serif;
+  font-family: 'Dancing Script', cursive;
   color: #347866;
   font-size: 2.7rem;
   font-weight: 900;
@@ -11,7 +11,7 @@
 }
 
 body {
-  background: #f7fafc;
+  background: #347866;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 18px;
   color: #2d3748;
@@ -55,8 +55,13 @@ input:focus {
   box-shadow: 0 0 0 2px #e6f2ff;
 }
 
+input:active {
+  border: 2px solid #2b6cb0;
+  box-shadow: 0 0 0 2px #e6f2ff;
+}
+
 button {
-  background: #38b2ac;
+  background: #347866;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -89,8 +94,8 @@ th, td {
 }
 
 th {
-  background: #e6f2ff;
-  color: #2b6cb0;
+  background: #347866;
+  color: #fff;
   font-size: 1.15rem;
   font-weight: 700;
   border-bottom: 2px solid #b5c9d6;
@@ -113,6 +118,19 @@ li {
   margin-bottom: 4px;
   color: #2d3748;
   font-size: 1rem;
+}
+
+.spinner {
+  border: 4px solid #e6f2ff;
+  border-top: 4px solid #347866;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
 }
 
 @media (max-width: 600px) {
