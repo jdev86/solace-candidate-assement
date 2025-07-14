@@ -21,8 +21,16 @@ export default function Home() {
   return (
     <main>
       <div className="logo">Solace Advocates</div>
-      <Search onChange={onChange} searchTerm={searchTerm} onClick={onClick} />
-      <AdvocatesTable searchTerm={searchTerm} page={page} setPage={setPage} />
+      <Search
+        onChange={onChange}
+        searchTerm={searchTerm}
+        onClick={onClick}
+      />
+      <AdvocatesTable
+        searchTerm={searchTerm}
+        page={page}
+        setPage={setPage}
+      />
     </main>
   );
 }
