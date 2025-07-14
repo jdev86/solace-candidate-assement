@@ -7,20 +7,3 @@ export function formatPhoneNumber(phone: string) {
   }
   return phone;
 }
-
-// Helper to format specialties as a bulleted list with capitalization
-export function formatSpecialties(specialties: string[]) {
-  if (!specialties.length) return null;
-  return (
-    <ul className="ml-4">
-      {specialties.map((s, idx) => (
-        <li
-          key={idx}
-          className="list-disc mb-1 capitalize text-base text-gray-800"
-        >
-          {s}
-        </li>
-      ))}
-    </ul>
-  );
-}
