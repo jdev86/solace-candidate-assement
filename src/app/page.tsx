@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import AdvocatesTable from "./components/AdvocatesTable";
+import Search from "./components/Search";
 
 // Define Advocate type
 interface Advocate {
@@ -61,91 +63,19 @@ export default function Home() {
     setSearchTerm("");
   };
 
-  // Helper to format phone numbers as (xxx) xxx-xxxx
-  function formatPhoneNumber(phone: string) {
-    // Remove non-digits
-    const cleaned = ("" + phone).replace(/\D/g, "");
-    const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-    if (match) {
-      return `(${match[1]}) ${match[2]}-${match[3]}`;
-    }
-    return phone;
-  }
-
-  // Helper to format specialties as a bulleted list with capitalization
-  function formatSpecialties(specialties: string[]) {
-    if (!specialties.length) return null;
-    return (
-      <ul style={{ margin: 0, paddingLeft: 18 }}>
-        {specialties.map((s, idx) => (
-          <li key={idx} style={{ listStyleType: "disc", marginBottom: 2 }}>
-            {s.charAt(0).toUpperCase() + s.slice(1)}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
   return (
     <main>
-      <div className="logo">Solace Advocates</div> <br />
-      <br />
-      <div>
-        <input
-          style={{ border: "1px solid black" }}
-          value={searchTerm}
-          onChange={onChange}
-          placeholder="Search here"
-        />
-        <button onClick={onClick}>Reset</button>
-      </div>
-      <br />
-      <br />
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p style={{ color: "red" }}>Error: {error}</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>City</th>
-              <th>Degree</th>
-              <th>Specialties</th>
-              <th>Years of Experience</th>
-              <th>Phone Number</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredAdvocates.map((advocate) => {
-              return (
-                <tr key={advocate.id}>
-                  <td>{advocate.firstName}</td>
-                  <td>{advocate.lastName}</td>
-                  <td>{advocate.city}</td>
-                  <td>{advocate.degree}</td>
-                  <td>{formatSpecialties(advocate.specialties)}</td>
-                  <td>{advocate.yearsOfExperience}</td>
-                  <td>
-                    <a
-                      href={`tel:${advocate.phoneNumber}`}
-                      style={{
-                        color: "#347866",
-                        textDecoration: "underline",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {formatPhoneNumber(advocate.phoneNumber)}
-                    </a>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      )}
+      <div className="logo">Solace Advocates</div>
+      <Search
+        onChange={onChange}
+        searchTerm={searchTerm}
+        onClick={onClick}
+      />
+      <AdvocatesTable
+        searchTerm={searchTerm}
+        page={page}
+        setPage={setPage}
+      />
     </main>
   );
 }
