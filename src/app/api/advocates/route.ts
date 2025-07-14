@@ -1,6 +1,6 @@
 import db from "../../../db";
 import { advocates } from "../../../db/schema";
-import { ilike, or, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { advocateData } from "../../../db/seed/advocates";
 
@@ -23,17 +23,11 @@ export async function GET(req: NextRequest) {
   const offset = (page - 1) * limit;
 
   try {
-    // Build filter
+    // Build filter (city and specialties only)
     let whereClause = undefined;
     if (search) {
       const pattern = `%${search}%`;
-      whereClause = or(
-        ilike(advocates.firstName, pattern),
-        ilike(advocates.lastName, pattern),
-        ilike(advocates.city, pattern),
-        ilike(advocates.degree, pattern)
-        // Add more fields as needed
-      );
+      whereClause = sql`city ILIKE ${pattern} OR payload::text ILIKE ${pattern}`;
     }
 
     // Get total count
@@ -64,12 +58,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ data, total: Number(count), page, limit });
   } catch (err) {
     console.error("API error:", err);
-    // Fallback to mock data
+    // Fallback to mock data (city and specialties only)
     const filtered = search
       ? advocateData.filter((advocate) =>
-          [advocate.firstName, advocate.lastName, advocate.city, advocate.degree]
+          [advocate.city, ...(advocate.specialties || [])]
             .some((field) =>
-              field.toLowerCase().includes(search.toLowerCase())
+              typeof field === "string" && field.toLowerCase().includes(search.toLowerCase())
             )
         )
       : advocateData;
