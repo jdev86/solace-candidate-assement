@@ -78,7 +78,7 @@ export default function Home() {
     return (
       <ul style={{ margin: 0, paddingLeft: 18 }}>
         {specialties.map((s, idx) => (
-          <li key={idx} style={{ listStyleType: "disc", marginBottom: 2 }}>
+          <li key={idx} style={{ listStyleType: 'disc', marginBottom: 2 }}>
             {s.charAt(0).toUpperCase() + s.slice(1)}
           </li>
         ))}
@@ -88,16 +88,20 @@ export default function Home() {
 
   return (
     <main>
-      <div className="logo">Solace Advocates</div> <br />
+      <div className="logo">Solace Advocates</div>
+      <br />
       <br />
       <div>
+        <p>Search</p>
+        <p>
+          Searching for: <span id="search-term">{searchTerm}</span>
+        </p>
         <input
           style={{ border: "1px solid black" }}
           value={searchTerm}
           onChange={onChange}
-          placeholder="Search here"
         />
-        <button onClick={onClick}>Reset</button>
+        <button onClick={onClick}>Reset Search</button>
       </div>
       <br />
       <br />
@@ -129,14 +133,7 @@ export default function Home() {
                   <td>{formatSpecialties(advocate.specialties)}</td>
                   <td>{advocate.yearsOfExperience}</td>
                   <td>
-                    <a
-                      href={`tel:${advocate.phoneNumber}`}
-                      style={{
-                        color: "#347866",
-                        textDecoration: "underline",
-                        fontWeight: 500,
-                      }}
-                    >
+                    <a href={`tel:${advocate.phoneNumber.replace(/\D/g, "")}`} style={{ color: '#347866', textDecoration: 'underline', fontWeight: 500 }}>
                       {formatPhoneNumber(advocate.phoneNumber)}
                     </a>
                   </td>
